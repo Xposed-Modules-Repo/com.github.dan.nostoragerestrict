@@ -14,8 +14,8 @@ android {
         applicationId = "com.github.dan.NoStorageRestrict"
         minSdk = 15
         targetSdk = 32  // Target Android Sv2
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.2.0"
     }
 
     buildFeatures {
