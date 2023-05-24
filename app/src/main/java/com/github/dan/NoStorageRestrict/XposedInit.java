@@ -28,17 +28,17 @@ import static de.robv.android.xposed.XposedHelpers.findAndHookConstructor;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 
 public class XposedInit implements IXposedHookLoadPackage {
-    public void handleLoadPackage(final LoadPackageParam lpparam) throws Throwable {
-        if (!lpparam.packageName.equals("com.android.externalstorage"))
-            return;
+    public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
 
-        XposedHelpers.findAndHookMethod("com.android.externalstorage.ExternalStorageProvider", lpparam.classLoader, "shouldBlockFromTree", String.class, new XC_MethodHook() {
-            @Override
-            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                super.beforeHookedMethod(param);
+        if (Constants.DOCUMENTSUI_PACKAGE_NAME.equals(lpparam.packageName)) {
+            new ManagedModehooks().handleLoadPackage(lpparam);
+        }
 
-                param.setResult(false);
-            }
-        });
-    }
+        if (Constants.DOCUMENTSUI_GOOGLE_PACKAGE_NAME.equals(lpparam.packageName)) {
+            new ManagedModehooks().handleLoadPackage(lpparam);
+        }
+
+        if (Constants.STORAGEMANAGER_NAME.equals(lpparam.packageName))
+            new FolderRestrictionhook().handleLoadPackage(lpparam);
+        }
 }
