@@ -5,7 +5,7 @@
 Removes the restriction when selecting folders (Android, Downloads, data and obb) through the file manager on Android 11 and higher
 
 ## Disclaimer
-- Only apply the module to the Files app prior to granting /data /obb access to apps, after that unapply the module to it.
+- For most cases DO NOT enable the module for the files app, only do so when you want an app to be able to access something on /Android/data through the files app, otherwise keep it DISABLED
 
 
 [Donation/Paypal](https://www.paypal.com/donate/?hosted_button_id=BJAJW4755BXFY)
