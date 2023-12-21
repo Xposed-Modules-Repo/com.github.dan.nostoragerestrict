@@ -2,7 +2,5 @@
 <resources>
     <string-array name="module_scope">
         <item>com.android.externalstorage</item>
-        <item>com.android.documentsui</item>
-        <item>com.google.android.documentsui</item>
     </string-array>
 </resources>

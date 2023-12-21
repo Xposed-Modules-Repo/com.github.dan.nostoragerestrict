@@ -38,7 +38,12 @@ public class XposedInit implements IXposedHookLoadPackage {
             new ManagedModehooks().handleLoadPackage(lpparam);
         }
 
+        if (Constants.STORAGEMANAGER_NAME.equals(lpparam.packageName)) {
+            new FolderRestrictionhookA14().handleLoadPackage(lpparam);
+        }
+
         if (Constants.STORAGEMANAGER_NAME.equals(lpparam.packageName))
             new FolderRestrictionhook().handleLoadPackage(lpparam);
         }
+
 }
