@@ -39,11 +39,7 @@ public class XposedInit implements IXposedHookLoadPackage {
         }
 
         if (Constants.STORAGEMANAGER_NAME.equals(lpparam.packageName)) {
-            new FolderRestrictionhookA14().handleLoadPackage(lpparam);
-        }
-
-        if (Constants.STORAGEMANAGER_NAME.equals(lpparam.packageName))
             new FolderRestrictionhook().handleLoadPackage(lpparam);
         }
-
+    }
 }
