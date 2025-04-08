@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.github.dan.NoStorageRestrict"
-        minSdk = 15
+        minSdk = 21
         targetSdk = 35
         versionCode = 5
         versionName = "0.5.0"
@@ -23,11 +23,11 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_21)
-        targetCompatibility(JavaVersion.VERSION_21)
+        sourceCompatibility(JavaVersion.VERSION_17)
+        targetCompatibility(JavaVersion.VERSION_17)
     }
 
-    packagingOptions {
+    packaging {
         resources {
             excludes += arrayOf("**")
         }
@@ -52,6 +52,7 @@ android {
         additionalParameters += arrayOf("--allow-reserved-package-id", "--package-id", "0x23")
     }
     namespace = "io.github.duzhaokun123.takeapplog"
+    buildToolsVersion = "35.0.1"
 }
 
 dependencies {

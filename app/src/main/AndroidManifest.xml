@@ -20,7 +20,7 @@
             android:resource="@array/module_scope" />
         <meta-data
             android:name="xposedminversion"
-            android:value="53" />
+            android:value="93" />
     </application>
 
 </manifest>
