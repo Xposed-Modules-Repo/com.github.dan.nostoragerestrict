@@ -1,0 +1,12 @@
+# Gradle
+.gradle/
+build/
+app/build/
+
+# IDE
+.idea/
+*.iml
+local.properties
+
+# Assistant artifacts
+.artifacts/

@@ -2,6 +2,7 @@ import com.android.build.api.artifact.ArtifactTransformationRequest
 import com.android.build.api.artifact.SingleArtifact
 import com.android.build.api.variant.BuiltArtifact
 import java.nio.file.Paths
+import java.util.Properties
 
 plugins {
     id("com.android.application")
@@ -14,12 +15,15 @@ android {
         applicationId = "com.github.dan.NoStorageRestrict"
         minSdk = 15
         targetSdk = 35
-        versionCode = 5
-        versionName = "0.5.0"
+        versionCode = 6
+        versionName = "0.6.0"
+
+        vectorDrawables.generatedDensities?.clear()
     }
 
     buildFeatures {
         prefab = true
+        buildConfig = true
     }
 
     compileOptions {
@@ -27,9 +31,9 @@ android {
         targetCompatibility(JavaVersion.VERSION_21)
     }
 
-    packagingOptions {
+    packaging {
         resources {
-            excludes += arrayOf("**")
+            // Removed overly broad exclude to allow vcsInfo and other metadata
         }
     }
 
@@ -38,6 +42,9 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles("proguard-rules.pro")
+            vcsInfo.include = true
+            signingConfig = signingConfigs.findByName("release")
+            isCrunchPngs = false
         }
     }
 
@@ -51,7 +58,23 @@ android {
     androidResources {
         additionalParameters += arrayOf("--allow-reserved-package-id", "--package-id", "0x23")
     }
-    namespace = "io.github.duzhaokun123.takeapplog"
+
+    signingConfigs {
+        val keystorePropertiesFile = rootProject.file("keystore.properties")
+        if (keystorePropertiesFile.exists()) {
+            val keystoreProperties = Properties()
+            keystorePropertiesFile.inputStream().use { keystoreProperties.load(it) }
+            create("release") {
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
+        } else {
+            create("release")
+        }
+    }
+    namespace = "com.github.dan.NoStorageRestrict"
 }
 
 dependencies {
